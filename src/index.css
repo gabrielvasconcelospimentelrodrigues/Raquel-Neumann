@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap');
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Cormorant Garamond", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+
+  --color-wine-50: #fdf8f9;
+  --color-wine-100: #f8eef0;
+  --color-wine-200: #f0dce1;
+  --color-wine-300: #e3c0c9;
+  --color-wine-400: #d09ba8;
+  --color-wine-500: #b87183;
+  --color-wine-600: #9e5366;
+  --color-wine-700: #844152;
+  --color-wine-800: #6e3846;
+  --color-wine-900: #5c323e;
+  --color-wine-950: #32171f;
+
+  --color-gold-50: #fbf9f2;
+  --color-gold-100: #f5f0df;
+  --color-gold-200: #ebdebf;
+  --color-gold-300: #dfc695;
+  --color-gold-400: #d1a965;
+  --color-gold-500: #c59141;
+  --color-gold-600: #b57835;
+  --color-gold-700: #975e2e;
+  --color-gold-800: #7a4c2b;
+  --color-gold-900: #633f26;
+  --color-gold-950: #382013;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: #ffffff;
+  color: #1a1a1a;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+}
+
+/* Custom utility for gold text gradient */
+.text-gradient-gold {
+  background: linear-gradient(to right, var(--color-gold-400), var(--color-gold-600));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
