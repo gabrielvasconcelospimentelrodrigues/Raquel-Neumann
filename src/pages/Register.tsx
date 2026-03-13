@@ -17,33 +17,24 @@ export default function Register() {
     setError(null);
 
     try {
-      const { error } = await supabase.auth.signUp({
+      const { data, error } = await supabase.auth.signUp({
         email,
         password,
         options: {
-          data: {
-            full_name: name,
-          }
+          data: { full_name: name }
         }
       });
 
       if (error) throw error;
 
-      if (email === 'gdesignbrasil@gmail.com') {
-        navigate('/admin');
-      } else {
-        navigate('/minha-conta');
-      }
+      // Register as customer
+      await supabase.from('customers').insert([{ name, email, status: 'active' }]);
+
+      navigate('/minha-conta');
     } catch (err: any) {
       // Fallback for simulation if Supabase is not configured
       if (err.message.includes('placeholder') || err.message.includes('fetch')) {
-        setTimeout(() => {
-          if (email === 'gdesignbrasil@gmail.com') {
-            navigate('/admin');
-          } else {
-            navigate('/minha-conta');
-          }
-        }, 1000);
+        setTimeout(() => navigate('/minha-conta'), 1000);
       } else {
         setError(err.message || 'Erro ao criar conta');
         setLoading(false);

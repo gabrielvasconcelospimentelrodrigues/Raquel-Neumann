@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
 import { ArrowLeft, Calendar, Share2 } from 'lucide-react';
+import BlogBuilder from '../components/BlogBuilder';
 
 interface Post {
   id: string;
@@ -110,14 +111,7 @@ export default function BlogPost() {
 
       {/* Content */}
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div 
-          className="prose prose-lg prose-wine max-w-none font-sans leading-relaxed text-wine-900
-            prose-headings:font-serif prose-headings:text-wine-950 prose-headings:font-bold
-            prose-a:text-gold-600 prose-a:no-underline hover:prose-a:text-wine-900
-            prose-blockquote:border-l-gold-500 prose-blockquote:bg-wine-50 prose-blockquote:p-6 prose-blockquote:rounded-r-2xl prose-blockquote:not-italic prose-blockquote:text-wine-800
-            prose-img:rounded-3xl prose-img:shadow-xl"
-          dangerouslySetInnerHTML={{ __html: post.content }}
-        />
+        <BlogBuilder content={post.content} />
       </div>
 
       {/* CTA */}

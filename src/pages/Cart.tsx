@@ -1,27 +1,10 @@
 import { Link } from 'react-router-dom';
+import { useCart } from '../contexts/CartContext';
 import { Trash2, ArrowRight, ShoppingBag } from 'lucide-react';
 
-// Mock cart data
-const MOCK_CART = [
-  {
-    id: 1,
-    name: "Curso: Performance Consciente",
-    price: 497.00,
-    quantity: 1,
-    image: "https://picsum.photos/seed/curso1/100/100"
-  },
-  {
-    id: 2,
-    name: "E-book: Guia Prático de Tantra",
-    price: 47.90,
-    quantity: 1,
-    image: "https://picsum.photos/seed/ebook1/100/100"
-  }
-];
-
 export default function Cart() {
-  const subtotal = MOCK_CART.reduce((acc, item) => acc + (item.price * item.quantity), 0);
-  const total = subtotal; // Add shipping/taxes if needed
+  const { cartItems, removeFromCart, updateQuantity, subtotal } = useCart();
+  const total = subtotal; // Add shipping logic here later if needed
 
   return (
     <div className="bg-wine-50 min-h-screen py-12">
@@ -32,13 +15,13 @@ export default function Cart() {
           <p className="text-wine-700">Revise seus itens antes de finalizar a compra.</p>
         </div>
 
-        {MOCK_CART.length > 0 ? (
+        {cartItems.length > 0 ? (
           <div className="flex flex-col lg:flex-row gap-8">
             {/* Cart Items */}
             <div className="lg:w-2/3">
               <div className="bg-white rounded-2xl shadow-sm border border-wine-100 overflow-hidden">
                 <ul className="divide-y divide-wine-100">
-                  {MOCK_CART.map((item) => (
+                  {cartItems.map((item) => (
                     <li key={item.id} className="p-6 flex flex-col sm:flex-row items-center sm:items-start gap-6">
                       <div className="w-24 h-24 flex-shrink-0 bg-wine-50 rounded-xl overflow-hidden">
                         <img
@@ -59,11 +42,24 @@ export default function Cart() {
                         
                         <div className="flex items-center justify-between sm:flex-col sm:items-end gap-4">
                           <div className="flex items-center border border-wine-200 rounded-lg bg-white">
-                            <button className="px-3 py-1 text-wine-600 hover:bg-wine-50 rounded-l-lg transition-colors">-</button>
+                            <button 
+                              onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                              className="px-3 py-1 text-wine-600 hover:bg-wine-50 rounded-l-lg transition-colors"
+                            >
+                              -
+                            </button>
                             <span className="px-4 py-1 text-wine-900 font-medium border-x border-wine-200">{item.quantity}</span>
-                            <button className="px-3 py-1 text-wine-600 hover:bg-wine-50 rounded-r-lg transition-colors">+</button>
+                            <button 
+                              onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                              className="px-3 py-1 text-wine-600 hover:bg-wine-50 rounded-r-lg transition-colors"
+                            >
+                              +
+                            </button>
                           </div>
-                          <button className="text-red-500 hover:text-red-700 transition-colors flex items-center text-sm font-medium">
+                          <button 
+                            onClick={() => removeFromCart(item.id)}
+                            className="text-red-500 hover:text-red-700 transition-colors flex items-center text-sm font-medium"
+                          >
                             <Trash2 size={16} className="mr-1" /> Remover
                           </button>
                         </div>

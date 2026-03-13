@@ -2,9 +2,15 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Menu, X, ShoppingCart, User, LogOut, Package, MapPin, Settings } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
 import { supabase } from '../lib/supabase';
+import { useCart } from '../contexts/CartContext';
 
-export default function Header() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  import { useContent } from '../contexts/ContentContext';
+
+  export default function Header() {
+    const { content } = useContent();
+    const { itemCount } = useCart();
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+    // ... existing state and effects ...
   const [user, setUser] = useState<any>(null);
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
   const profileMenuRef = useRef<HTMLDivElement>(null);
@@ -79,7 +85,7 @@ export default function Header() {
           <nav className="hidden md:flex space-x-8 flex-1">
             <Link to="/" className="text-wine-900 hover:text-gold-600 font-medium transition-colors">Início</Link>
             <a href="/#sobre" className="text-wine-900 hover:text-gold-600 font-medium transition-colors">Sobre</a>
-            <a href="/#tratamentos" className="text-wine-900 hover:text-gold-600 font-medium transition-colors">Tratamentos</a>
+            <Link to="/tratamentos" className="text-wine-900 hover:text-gold-600 font-medium transition-colors">Tratamentos</Link>
             <Link to="/loja" className="text-wine-900 hover:text-gold-600 font-medium transition-colors">Loja</Link>
             <Link to="/cursos" className="text-wine-900 hover:text-gold-600 font-medium transition-colors">Cursos</Link>
           </nav>
@@ -87,12 +93,22 @@ export default function Header() {
           {/* Logo (Center) */}
           <div className="flex-shrink-0 flex justify-center flex-1 md:flex-none">
             <Link to="/" className="flex flex-col items-center">
-              <span className="font-serif text-2xl md:text-3xl font-bold text-wine-900 tracking-wider uppercase">
-                Raquel Neumann
-              </span>
-              <span className="text-[10px] md:text-xs text-gold-600 tracking-[0.2em] uppercase mt-1">
-                Terapia Sexual & Performance
-              </span>
+              {content.logo_url ? (
+                <img 
+                  src={content.logo_url} 
+                  alt={content.site_title || "Raquel Neumann"} 
+                  className="h-12 md:h-16 w-auto object-contain"
+                />
+              ) : (
+                <>
+                  <span className="font-serif text-2xl md:text-3xl font-bold text-wine-900 tracking-wider uppercase">
+                    Raquel Neumann
+                  </span>
+                  <span className="text-[10px] md:text-xs text-gold-600 tracking-[0.2em] uppercase mt-1">
+                    Terapia Sexual & Performance
+                  </span>
+                </>
+              )}
             </Link>
           </div>
 
@@ -102,12 +118,12 @@ export default function Header() {
             <Link to="/carrinho" className="text-wine-900 hover:text-gold-600 transition-colors relative">
               <ShoppingCart size={20} />
               <span className="absolute -top-2 -right-2 bg-gold-500 text-wine-950 text-[10px] font-bold h-4 w-4 rounded-full flex items-center justify-center">
-                0
+                {itemCount}
               </span>
             </Link>
             
             <a 
-              href="https://wa.me/5511999999999" 
+              href={`https://wa.me/${content.whatsapp_number || '5511999999999'}`} 
               target="_blank" 
               rel="noopener noreferrer"
               className="bg-wine-900 text-white px-5 py-2 rounded-full hover:bg-wine-800 transition-colors font-medium text-sm"
@@ -223,13 +239,13 @@ export default function Header() {
             >
               Sobre
             </a>
-            <a 
-              href="/#tratamentos" 
+            <Link 
+              to="/tratamentos" 
               className="block px-3 py-2 text-wine-900 font-medium hover:bg-wine-50 rounded-md"
               onClick={() => setIsMenuOpen(false)}
             >
               Tratamentos
-            </a>
+            </Link>
             <Link 
               to="/loja" 
               className="block px-3 py-2 text-wine-900 font-medium hover:bg-wine-50 rounded-md"
@@ -256,7 +272,7 @@ export default function Header() {
               className="block px-3 py-2 text-wine-900 font-medium hover:bg-wine-50 rounded-md flex items-center"
               onClick={() => setIsMenuOpen(false)}
             >
-              <ShoppingCart size={18} className="mr-2" /> Carrinho (0)
+              <ShoppingCart size={18} className="mr-2" /> Carrinho ({itemCount})
             </Link>
             
             {user ? (
@@ -306,7 +322,7 @@ export default function Header() {
             )}
             
             <a 
-              href="https://wa.me/5511999999999" 
+              href={`https://wa.me/${content.whatsapp_number || '5511999999999'}`} 
               target="_blank" 
               rel="noopener noreferrer"
               className="block px-3 py-2 text-gold-600 font-bold hover:bg-wine-50 rounded-md mt-2"

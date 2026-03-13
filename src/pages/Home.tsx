@@ -77,11 +77,17 @@ export default function Home() {
         </div>
         
         <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="hero-anim font-serif text-4xl md:text-6xl lg:text-7xl font-bold text-wine-900 leading-tight mb-6">
-            <EditableText contentKey="home_hero_title1" defaultText="Terapia Sexual e Performance Íntima Masculina" /> <br/>
-            <span className="text-gradient-gold text-3xl md:text-5xl lg:text-6xl block mt-2">
-              <EditableText contentKey="home_hero_title2" defaultText="com Raquel Neumann" />
-            </span>
+          <h1 className="hero-anim font-serif text-wine-900 leading-tight mb-6">
+            <EditableText 
+              contentKey="home_hero_title1" 
+              defaultText="Terapia Sexual e Performance Íntima Masculina" 
+              className="text-4xl md:text-6xl lg:text-7xl font-bold"
+            /> <br/>
+            <EditableText 
+              contentKey="home_hero_title2" 
+              defaultText="com Raquel Neumann" 
+              className="text-gradient-gold text-3xl md:text-5xl lg:text-6xl block mt-2"
+            />
           </h1>
           <p className="hero-anim text-lg md:text-xl text-wine-800 max-w-3xl mx-auto mb-10 leading-relaxed">
             <EditableText 

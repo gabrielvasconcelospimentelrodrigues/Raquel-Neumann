@@ -79,13 +79,16 @@ export function EditableText({ contentKey, defaultText, as: Component = 'span', 
   // Function to filter out existing text size and color classes from className
   const getFilteredClassName = () => {
     let filtered = className;
-    if (currentColor) {
+    const hasGradient = className.includes('text-gradient');
+
+    if (currentColor && !hasGradient) {
       filtered = filtered.replace(/text-(wine|gold|gray|white|black)(-\d+)?/g, '').trim();
     }
     if (currentSize) {
       filtered = filtered.replace(/text-(xs|sm|base|lg|xl|2xl|3xl|4xl|5xl|6xl|7xl)/g, '').trim();
     }
-    return `${filtered} ${currentColor} ${currentSize}`.trim();
+    
+    return `${filtered} ${!hasGradient ? currentColor : ''} ${currentSize}`.trim();
   };
 
   if (isEditing) {

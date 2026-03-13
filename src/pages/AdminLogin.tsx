@@ -16,12 +16,27 @@ export default function AdminLogin() {
     setError(null);
 
     try {
-      const { error } = await supabase.auth.signInWithPassword({
+      const { data, error } = await supabase.auth.signInWithPassword({
         email,
         password,
       });
 
       if (error) throw error;
+
+      // Verify user is actually an admin
+      const { data: adminRecord } = await supabase
+        .from('admin_users')
+        .select('id')
+        .eq('email', data.user?.email)
+        .maybeSingle();
+
+      if (!adminRecord) {
+        await supabase.auth.signOut();
+        setError('Acesso negado. Esta área é restrita a administradores.');
+        setLoading(false);
+        return;
+      }
+
       navigate('/admin');
     } catch (err: any) {
       if (err.message.includes('placeholder') || err.message.includes('fetch')) {

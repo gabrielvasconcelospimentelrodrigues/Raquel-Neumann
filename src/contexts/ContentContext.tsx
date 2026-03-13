@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { supabase } from '../lib/supabase';
 
 type ContentData = {
   [key: string]: any;
@@ -16,30 +17,55 @@ export function ContentProvider({ children, isAdmin }: { children: React.ReactNo
   const [content, setContent] = useState<ContentData>({});
 
   useEffect(() => {
-    // Load content from backend on mount
-    fetch('/api/content')
-      .then(res => res.json())
-      .then(data => {
-        if (data && typeof data === 'object') {
-          setContent(data);
+    const fetchContent = async () => {
+      try {
+        const { data, error } = await supabase.from('content').select('*');
+        if (error) throw error;
+        
+        if (data) {
+          const contentMap: ContentData = {};
+          data.forEach(item => {
+            contentMap[item.key] = item.value;
+          });
+          setContent(contentMap);
         }
-      })
-      .catch(e => console.error('Failed to fetch content', e));
+      } catch (err) {
+        console.error('Failed to fetch content:', err);
+      }
+    };
+
+    fetchContent();
   }, []);
+
+  useEffect(() => {
+    // Dynamically update document title
+    if (content.site_title) {
+      document.title = content.site_title;
+    }
+
+    // Dynamically update favicon
+    if (content.favicon_url) {
+      let link: HTMLLinkElement | null = document.querySelector("link[rel~='icon']");
+      if (!link) {
+        link = document.createElement('link');
+        link.rel = 'icon';
+        document.getElementsByTagName('head')[0].appendChild(link);
+      }
+      link.href = content.favicon_url;
+    }
+  }, [content.site_title, content.favicon_url]);
 
   const updateContent = async (key: string, value: any) => {
     setContent((prev) => ({ ...prev, [key]: value }));
     
     try {
-      await fetch('/api/content', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ key, value }),
-      });
+      const { error } = await supabase
+        .from('content')
+        .upsert({ key, value, updated_at: new Date().toISOString() }, { onConflict: 'key' });
+        
+      if (error) throw error;
     } catch (e) {
-      console.error('Failed to save content', e);
+      console.error('Failed to save content:', e);
     }
   };
 

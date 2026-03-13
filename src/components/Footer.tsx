@@ -1,9 +1,12 @@
 import { Link } from 'react-router-dom';
-import { Instagram, Facebook, Mail, MapPin, Phone } from 'lucide-react';
+import { Instagram, MessageCircle, Mail, MapPin, Phone } from 'lucide-react';
 import { EditableText } from './Editable/EditableText';
 import { EditableButton } from './Editable/EditableButton';
+import { useContent } from '../contexts/ContentContext';
 
 export default function Footer() {
+  const { content } = useContent();
+
   return (
     <footer className="bg-wine-950 text-white pt-16 pb-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -30,18 +33,18 @@ export default function Footer() {
               <EditableButton 
                 contentKey="footer_social_instagram" 
                 defaultLabel="" 
-                defaultHref="#"
+                defaultHref={content.instagram_url || "#"}
                 className="text-wine-200 hover:text-gold-400 transition-colors"
               >
                 <Instagram size={20} />
               </EditableButton>
               <EditableButton 
-                contentKey="footer_social_facebook" 
+                contentKey="footer_social_whatsapp" 
                 defaultLabel="" 
-                defaultHref="#"
+                defaultHref={`https://wa.me/${content.whatsapp_number || '5511999999999'}`}
                 className="text-wine-200 hover:text-gold-400 transition-colors"
               >
-                <Facebook size={20} />
+                <MessageCircle size={20} />
               </EditableButton>
             </div>
           </div>
