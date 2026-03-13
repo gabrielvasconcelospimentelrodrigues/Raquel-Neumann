@@ -50,10 +50,10 @@ export default function Register() {
             <ArrowLeft size={16} className="mr-2" /> Voltar para o site
           </Link>
           <h2 className="text-center font-serif text-3xl font-bold text-wine-900">
-            Criar Conta
+            Criar Conta de Cliente
           </h2>
           <p className="mt-2 text-center text-sm text-wine-800">
-            Preencha os dados abaixo para se cadastrar.
+            Cadastre-se para acompanhar seus pedidos e acessar sua área de cliente.
           </p>
         </div>
         

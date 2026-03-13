@@ -16,28 +16,25 @@ export default function Login() {
     setError(null);
 
     try {
-      const { error } = await supabase.auth.signInWithPassword({
+      const { data, error } = await supabase.auth.signInWithPassword({
         email,
         password,
       });
 
       if (error) throw error;
 
-      if (email === 'gdesignbrasil@gmail.com') {
-        navigate('/admin');
-      } else {
-        navigate('/minha-conta');
-      }
+      // Check if user is admin to redirect accordingly
+      const { data: adminRecord } = await supabase
+        .from('admin_users')
+        .select('id')
+        .eq('email', data.user?.email)
+        .maybeSingle();
+
+      navigate(adminRecord ? '/admin' : '/minha-conta');
     } catch (err: any) {
       // Fallback for simulation if Supabase is not configured
       if (err.message.includes('placeholder') || err.message.includes('fetch')) {
-        setTimeout(() => {
-          if (email === 'gdesignbrasil@gmail.com') {
-            navigate('/admin');
-          } else {
-            navigate('/minha-conta');
-          }
-        }, 1000);
+        setTimeout(() => navigate('/minha-conta'), 1000);
       } else {
         setError(err.message || 'Erro ao fazer login');
         setLoading(false);
@@ -53,10 +50,10 @@ export default function Login() {
             <ArrowLeft size={16} className="mr-2" /> Voltar para o site
           </Link>
           <h2 className="text-center font-serif text-3xl font-bold text-wine-900">
-            Acessar Conta
+            Entrar
           </h2>
           <p className="mt-2 text-center text-sm text-wine-800">
-            Bem-vindo de volta! Insira seus dados para continuar.
+            Bem-vindo de volta! Clientes e administradores entram por aqui.
           </p>
         </div>
         
