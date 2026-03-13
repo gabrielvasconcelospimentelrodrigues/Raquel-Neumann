@@ -36,20 +36,26 @@ function DynamicMetaManager() {
   return null;
 }
 
+async function checkIsAdmin(email?: string | null): Promise<boolean> {
+  if (!email) return false;
+  const { data } = await supabase
+    .from('admin_users')
+    .select('id')
+    .eq('email', email)
+    .maybeSingle();
+  return !!data;
+}
+
 export default function Layout() {
   const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
-    // Check active sessions and sets the user
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      // For this prototype, we'll consider any logged-in user as an admin
-      // In a real app, you'd check user roles or specific emails
-      setIsAdmin(!!session?.user);
+    supabase.auth.getSession().then(async ({ data: { session } }) => {
+      setIsAdmin(await checkIsAdmin(session?.user?.email));
     });
 
-    // Listen for changes on auth state
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-      setIsAdmin(!!session?.user);
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(async (_event, session) => {
+      setIsAdmin(await checkIsAdmin(session?.user?.email));
     });
 
     return () => subscription.unsubscribe();
