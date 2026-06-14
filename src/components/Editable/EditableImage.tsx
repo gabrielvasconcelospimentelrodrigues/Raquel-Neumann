@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useContent } from '../../contexts/ContentContext';
 import { Image as ImageIcon, Upload, X, Check, Maximize, Crop, ImagePlus } from 'lucide-react';
+import { supabase } from '../../lib/supabase';
 
 interface EditableImageProps {
   contentKey: string;
@@ -47,11 +48,28 @@ export function EditableImage({ contentKey, defaultSrc, alt, className = '' }: E
 
   const fetchGallery = async () => {
     try {
-      const res = await fetch('/api/images');
-      if (res.ok) {
-        const data = await res.json();
-        setGalleryImages(data);
-      }
+      const { data, error } = await supabase.storage.from('site-images').list();
+      if (error) throw error;
+      
+      const files = data?.filter(x => x.name !== '.emptyFolderPlaceholder') || [];
+      
+      const imagesWithUrls = files.map((file, index) => {
+        const { data: { publicUrl } } = supabase.storage.from('site-images').getPublicUrl(file.name);
+        return { 
+          id: index,
+          filename: file.name, 
+          url: publicUrl,
+          created_at: file.created_at
+        };
+      });
+      
+      // Sort by newest first
+      imagesWithUrls.sort((a, b) => {
+        if (!a.created_at || !b.created_at) return 0;
+        return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
+      });
+
+      setGalleryImages(imagesWithUrls);
     } catch (error) {
       console.error('Failed to fetch gallery images', error);
     }
@@ -82,27 +100,28 @@ export function EditableImage({ contentKey, defaultSrc, alt, className = '' }: E
     if (!file) return;
 
     setIsUploading(true);
-    const formData = new FormData();
-    formData.append('image', file);
+    const fileExt = file.name.split('.').pop();
+    const fileName = `${Math.random().toString(36).substring(2)}-${Date.now()}.${fileExt}`;
 
     try {
-      const res = await fetch('/api/upload', {
-        method: 'POST',
-        body: formData,
-      });
-      
-      if (res.ok) {
-        const data = await res.json();
-        setTempSrc(data.url);
-        // We stay in the "Upload/URL" view but the image is now in the gallery too
-        fetchGallery(); 
-      } else {
-        console.error('Upload failed');
-      }
-    } catch (error) {
+      const { error: uploadError } = await supabase.storage
+        .from('site-images')
+        .upload(fileName, file);
+
+      if (uploadError) throw uploadError;
+
+      const { data: { publicUrl } } = supabase.storage
+        .from('site-images')
+        .getPublicUrl(fileName);
+
+      setTempSrc(publicUrl);
+      fetchGallery();
+    } catch (error: any) {
       console.error('Error uploading image', error);
+      alert('Erro ao fazer upload: ' + error.message);
     } finally {
       setIsUploading(false);
+      if (fileInputRef.current) fileInputRef.current.value = '';
     }
   };
 
@@ -122,7 +141,7 @@ export function EditableImage({ contentKey, defaultSrc, alt, className = '' }: E
 
   return (
     <>
-      <div className={`relative group overflow-hidden ${getFilteredClassName()}`}>
+      <div className={`w-full h-full relative group overflow-hidden ${getFilteredClassName()}`}>
         <img
           src={currentSrc}
           alt={alt}

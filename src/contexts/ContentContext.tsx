@@ -44,15 +44,14 @@ export function ContentProvider({ children, isAdmin }: { children: React.ReactNo
     }
 
     // Dynamically update favicon
-    if (content.favicon_url) {
-      let link: HTMLLinkElement | null = document.querySelector("link[rel~='icon']");
-      if (!link) {
-        link = document.createElement('link');
-        link.rel = 'icon';
-        document.getElementsByTagName('head')[0].appendChild(link);
-      }
-      link.href = content.favicon_url;
+    const favUrl = content.favicon_url || 'https://shpbvncguqczyohymjjx.supabase.co/storage/v1/object/public/site-images/IMG_0599.PNG';
+    let link: HTMLLinkElement | null = document.querySelector("link[rel~='icon']");
+    if (!link) {
+      link = document.createElement('link');
+      link.rel = 'icon';
+      document.getElementsByTagName('head')[0].appendChild(link);
     }
+    link.href = favUrl;
   }, [content.site_title, content.favicon_url]);
 
   const updateContent = async (key: string, value: any) => {

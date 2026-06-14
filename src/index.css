@@ -6,17 +6,29 @@
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-serif: "Cormorant Garamond", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
 
-  --color-wine-50: #fdf8f9;
-  --color-wine-100: #f8eef0;
-  --color-wine-200: #f0dce1;
-  --color-wine-300: #e3c0c9;
-  --color-wine-400: #d09ba8;
-  --color-wine-500: #b87183;
-  --color-wine-600: #9e5366;
-  --color-wine-700: #844152;
-  --color-wine-800: #6e3846;
-  --color-wine-900: #5c323e;
-  --color-wine-950: #32171f;
+  --color-wine-50: #f6f8f4;
+  --color-wine-100: #edf0e9;
+  --color-wine-200: #dbe2d2;
+  --color-wine-300: #c4cfb6;
+  --color-wine-400: #a7b38f;
+  --color-wine-500: #8f9d74;
+  --color-wine-600: #738157;
+  --color-wine-700: #5c6745;
+  --color-wine-800: #475036;
+  --color-wine-900: #3c432d;
+  --color-wine-950: #23271a;
+
+  --color-vinho-50: #fdf8f9;
+  --color-vinho-100: #f8eef0;
+  --color-vinho-200: #f0dce1;
+  --color-vinho-300: #e3c0c9;
+  --color-vinho-400: #d09ba8;
+  --color-vinho-500: #b87183;
+  --color-vinho-600: #9e5366;
+  --color-vinho-700: #844152;
+  --color-vinho-800: #6e3846;
+  --color-vinho-900: #5c323e;
+  --color-vinho-950: #32171f;
 
   --color-gold-50: #fbf9f2;
   --color-gold-100: #f5f0df;

@@ -54,13 +54,17 @@ import { useCart } from '../contexts/CartContext';
   }, []);
 
   const handleLogout = async () => {
-    const isSupabaseConfigured = import.meta.env.VITE_SUPABASE_URL && import.meta.env.VITE_SUPABASE_URL !== 'your_supabase_url';
-    
-    if (!isSupabaseConfigured) {
-      localStorage.removeItem('mock_user');
-      setUser(null);
-    } else {
-      await supabase.auth.signOut();
+    try {
+      const isSupabaseConfigured = import.meta.env.VITE_SUPABASE_URL && import.meta.env.VITE_SUPABASE_URL !== 'your_supabase_url';
+      
+      if (!isSupabaseConfigured) {
+        localStorage.removeItem('mock_user');
+        setUser(null);
+      } else {
+        await supabase.auth.signOut();
+      }
+    } catch (err) {
+      console.error('Error signing out:', err);
     }
     
     setIsProfileMenuOpen(false);
@@ -70,7 +74,18 @@ import { useCart } from '../contexts/CartContext';
   return (
     <header className="bg-white border-b border-wine-100 sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-20">
+        {/* Emblem (Desktop only) */}
+        <div className="hidden md:flex justify-center pt-3 -mb-2">
+          <Link to="/">
+            <img 
+              src="https://shpbvncguqczyohymjjx.supabase.co/storage/v1/object/public/site-images/IMG_0599.PNG" 
+              alt="Emblema Raquel Neumann" 
+              className="h-18 w-auto object-contain"
+            />
+          </Link>
+        </div>
+
+        <div className="flex justify-between items-center h-auto py-3 md:py-4">
           {/* Mobile menu button */}
           <div className="flex items-center md:hidden">
             <button
@@ -82,7 +97,7 @@ import { useCart } from '../contexts/CartContext';
           </div>
 
           {/* Desktop Navigation (Left) */}
-          <nav className="hidden md:flex space-x-8 flex-1">
+          <nav className="hidden md:flex space-x-8 flex-1 items-center">
             <Link to="/" className="text-wine-900 hover:text-gold-600 font-medium transition-colors">Início</Link>
             <a href="/#sobre" className="text-wine-900 hover:text-gold-600 font-medium transition-colors">Sobre</a>
             <Link to="/tratamentos" className="text-wine-900 hover:text-gold-600 font-medium transition-colors">Tratamentos</Link>
@@ -93,6 +108,12 @@ import { useCart } from '../contexts/CartContext';
           {/* Logo (Center) */}
           <div className="flex-shrink-0 flex justify-center flex-1 md:flex-none">
             <Link to="/" className="flex flex-col items-center">
+              {/* Emblem (Mobile only) */}
+              <img 
+                src="https://shpbvncguqczyohymjjx.supabase.co/storage/v1/object/public/site-images/IMG_0599.PNG" 
+                alt="Emblema Raquel Neumann" 
+                className="h-12 w-auto object-contain mb-1 md:hidden"
+              />
               {content.logo_url ? (
                 <img 
                   src={content.logo_url} 
