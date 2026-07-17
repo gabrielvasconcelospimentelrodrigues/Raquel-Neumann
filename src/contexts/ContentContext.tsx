@@ -13,8 +13,15 @@ interface ContentContextType {
 
 const ContentContext = createContext<ContentContextType | undefined>(undefined);
 
-export function ContentProvider({ children, isAdmin }: { children: React.ReactNode, isAdmin: boolean }) {
+export function ContentProvider({ children, isAdmin: propIsAdmin }: { children: React.ReactNode, isAdmin?: boolean }) {
   const [content, setContent] = useState<ContentData>({});
+  const [isAdmin, setIsAdmin] = useState(propIsAdmin || false);
+
+  useEffect(() => {
+    if (propIsAdmin !== undefined) {
+      setIsAdmin(propIsAdmin);
+    }
+  }, [propIsAdmin]);
 
   useEffect(() => {
     const fetchContent = async () => {
@@ -35,7 +42,35 @@ export function ContentProvider({ children, isAdmin }: { children: React.ReactNo
     };
 
     fetchContent();
-  }, []);
+
+    // Internal check for admin users in DB
+    const checkUser = async (email?: string | null) => {
+      if (!email) return false;
+      try {
+        const { data } = await supabase
+          .from('admin_users')
+          .select('id')
+          .eq('email', email)
+          .maybeSingle();
+        return !!data;
+      } catch (err) {
+        console.error('Error checking admin status:', err);
+        return false;
+      }
+    };
+
+    if (propIsAdmin === undefined) {
+      supabase.auth.getSession().then(async ({ data: { session } }) => {
+        setIsAdmin(await checkUser(session?.user?.email));
+      });
+
+      const { data: { subscription } } = supabase.auth.onAuthStateChange(async (_event, session) => {
+        setIsAdmin(await checkUser(session?.user?.email));
+      });
+
+      return () => subscription.unsubscribe();
+    }
+  }, [propIsAdmin]);
 
   useEffect(() => {
     // Dynamically update document title

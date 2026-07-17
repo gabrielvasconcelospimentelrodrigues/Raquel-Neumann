@@ -1,12 +1,9 @@
 import { Outlet, Link } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { LayoutDashboard } from 'lucide-react';
 import Header from './Header';
 import Footer from './Footer';
 import ScrollToTop from './ScrollToTop';
-import { ContentProvider } from '../contexts/ContentContext';
-import { supabase } from '../lib/supabase';
-
 import { useContent } from '../contexts/ContentContext';
 
 function DynamicMetaManager() {
@@ -36,33 +33,11 @@ function DynamicMetaManager() {
   return null;
 }
 
-async function checkIsAdmin(email?: string | null): Promise<boolean> {
-  if (!email) return false;
-  const { data } = await supabase
-    .from('admin_users')
-    .select('id')
-    .eq('email', email)
-    .maybeSingle();
-  return !!data;
-}
-
 export default function Layout() {
-  const [isAdmin, setIsAdmin] = useState(false);
-
-  useEffect(() => {
-    supabase.auth.getSession().then(async ({ data: { session } }) => {
-      setIsAdmin(await checkIsAdmin(session?.user?.email));
-    });
-
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(async (_event, session) => {
-      setIsAdmin(await checkIsAdmin(session?.user?.email));
-    });
-
-    return () => subscription.unsubscribe();
-  }, []);
+  const { isAdmin } = useContent();
 
   return (
-    <ContentProvider isAdmin={isAdmin}>
+    <>
       <DynamicMetaManager />
       <div className="min-h-screen flex flex-col bg-white font-sans text-wine-950 relative">
         <ScrollToTop />
@@ -89,6 +64,6 @@ export default function Layout() {
           </Link>
         )}
       </div>
-    </ContentProvider>
+    </>
   );
 }
