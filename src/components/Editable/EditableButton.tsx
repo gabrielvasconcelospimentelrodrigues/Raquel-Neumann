@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useContent } from '../../contexts/ContentContext';
 import { Edit2, Check, X, Link as LinkIcon } from 'lucide-react';
+import { formatWhatsappUrl } from '../../lib/whatsapp';
 
 interface EditableButtonProps {
   contentKey: string;
@@ -86,14 +87,16 @@ export function EditableButton({ contentKey, defaultLabel, defaultHref, classNam
     );
   }
 
+  const renderedHref = formatWhatsappUrl(currentHref);
+
   return (
     <div className="relative group inline-block">
       <a 
-        href={currentHref}
+        href={renderedHref}
         className={`${className} ${isAdmin ? 'cursor-pointer hover:outline hover:outline-2 hover:outline-dashed hover:outline-gold-500 hover:outline-offset-4' : ''}`}
         onClick={isAdmin ? handleEdit : undefined}
-        target={currentHref.startsWith('http') ? '_blank' : '_self'}
-        rel={currentHref.startsWith('http') ? 'noopener noreferrer' : undefined}
+        target={renderedHref.startsWith('http') ? '_blank' : '_self'}
+        rel={renderedHref.startsWith('http') ? 'noopener noreferrer' : undefined}
       >
         {currentLabel}
         {children}

@@ -4,7 +4,8 @@ import { useState, useEffect, useRef } from 'react';
 import { supabase } from '../lib/supabase';
 import { useCart } from '../contexts/CartContext';
 
-  import { useContent } from '../contexts/ContentContext';
+import { useContent } from '../contexts/ContentContext';
+import { formatWhatsappUrl } from '../lib/whatsapp';
 
   export default function Header() {
     const { content } = useContent();
@@ -144,7 +145,7 @@ import { useCart } from '../contexts/CartContext';
             </Link>
             
             <a 
-              href={`https://wa.me/${content.whatsapp_number || '5547996097029'}`} 
+              href={formatWhatsappUrl(`https://wa.me/${content.whatsapp_number || '5547996097029'}`)} 
               target="_blank" 
               rel="noopener noreferrer"
               className="bg-wine-900 text-white px-5 py-2 rounded-full hover:bg-wine-800 transition-colors font-medium text-sm"
@@ -343,7 +344,7 @@ import { useCart } from '../contexts/CartContext';
             )}
             
             <a 
-              href={`https://wa.me/${content.whatsapp_number || '5547996097029'}`} 
+              href={formatWhatsappUrl(`https://wa.me/${content.whatsapp_number || '5547996097029'}`)} 
               target="_blank" 
               rel="noopener noreferrer"
               className="block px-3 py-2 text-gold-600 font-bold hover:bg-wine-50 rounded-md mt-2"

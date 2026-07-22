@@ -3,6 +3,7 @@ import { Instagram, MessageCircle, Mail, MapPin, Phone } from 'lucide-react';
 import { EditableText } from './Editable/EditableText';
 import { EditableButton } from './Editable/EditableButton';
 import { useContent } from '../contexts/ContentContext';
+import { formatWhatsappUrl } from '../lib/whatsapp';
 
 export default function Footer() {
   const { content } = useContent();
@@ -41,7 +42,7 @@ export default function Footer() {
               <EditableButton 
                 contentKey="footer_social_whatsapp" 
                 defaultLabel="" 
-                defaultHref={`https://wa.me/${content.whatsapp_number || '5547996097029'}`}
+                defaultHref={formatWhatsappUrl(`https://wa.me/${content.whatsapp_number || '5547996097029'}`)}
                 className="text-wine-200 hover:text-gold-400 transition-colors"
               >
                 <MessageCircle size={20} />

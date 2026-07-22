@@ -3,6 +3,8 @@ import { useParams, Link } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
 import { ArrowLeft, Calendar, Share2 } from 'lucide-react';
 import BlogBuilder from '../components/BlogBuilder';
+import { useContent } from '../contexts/ContentContext';
+import { formatWhatsappUrl } from '../lib/whatsapp';
 
 interface Post {
   id: string;
@@ -14,6 +16,7 @@ interface Post {
 }
 
 export default function BlogPost() {
+  const { content } = useContent();
   const { slug } = useParams<{ slug: string }>();
   const [post, setPost] = useState<Post | null>(null);
   const [loading, setLoading] = useState(true);
@@ -124,7 +127,7 @@ export default function BlogPost() {
             Dê o primeiro passo para recuperar sua confiança íntima e melhorar sua performance.
           </p>
           <a 
-            href="https://wa.me/5547996097029" 
+            href={formatWhatsappUrl(content.whatsapp_number || '5547996097029')} 
             target="_blank" 
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center px-8 py-4 bg-wine-900 text-white rounded-full font-bold text-lg hover:bg-wine-800 transition-all shadow-lg"
