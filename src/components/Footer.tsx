@@ -41,7 +41,7 @@ export default function Footer() {
               <EditableButton 
                 contentKey="footer_social_whatsapp" 
                 defaultLabel="" 
-                defaultHref={`https://wa.me/${content.whatsapp_number || '5511999999999'}`}
+                defaultHref={`https://wa.me/${content.whatsapp_number || '5547996097029'}`}
                 className="text-wine-200 hover:text-gold-400 transition-colors"
               >
                 <MessageCircle size={20} />
@@ -91,7 +91,7 @@ export default function Footer() {
               <li className="flex items-center">
                 <Phone size={18} className="text-gold-400 mr-3 flex-shrink-0" />
                 <span className="text-wine-200 text-sm">
-                  <EditableText contentKey="footer_contact_phone" defaultText="(11) 99999-9999" />
+                  <EditableText contentKey="footer_contact_phone" defaultText="(47) 99609-7029" />
                 </span>
               </li>
               <li className="flex items-center">

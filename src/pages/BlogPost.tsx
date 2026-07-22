@@ -124,7 +124,7 @@ export default function BlogPost() {
             Dê o primeiro passo para recuperar sua confiança íntima e melhorar sua performance.
           </p>
           <a 
-            href="https://wa.me/5511999999999" 
+            href="https://wa.me/5547996097029" 
             target="_blank" 
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center px-8 py-4 bg-wine-900 text-white rounded-full font-bold text-lg hover:bg-wine-800 transition-all shadow-lg"

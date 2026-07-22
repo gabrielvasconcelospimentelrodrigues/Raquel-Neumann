@@ -100,7 +100,7 @@ export default function Home() {
             <EditableButton 
               contentKey="home_hero_btn1" 
               defaultLabel="Agendar Atendimento" 
-              defaultHref="https://wa.me/5511999999999"
+              defaultHref="https://wa.me/5547996097029"
               className="w-full sm:w-auto px-8 py-4 bg-wine-900 text-white rounded-full font-medium text-lg hover:bg-wine-800 transition-all shadow-lg hover:shadow-xl flex items-center justify-center"
             >
               <ArrowRight className="ml-2" size={20} />
@@ -109,7 +109,7 @@ export default function Home() {
             <EditableButton 
               contentKey="home_hero_btn2" 
               defaultLabel="Falar no WhatsApp" 
-              defaultHref="https://wa.me/5511999999999"
+              defaultHref="https://wa.me/5547996097029"
               className="w-full sm:w-auto px-8 py-4 bg-transparent text-wine-900 underline font-medium text-lg hover:text-wine-700 transition-all flex items-center justify-center"
             >
               <MessageCircle className="mr-2 text-gold-600" size={20} />
@@ -535,7 +535,7 @@ export default function Home() {
             <EditableButton 
               contentKey="home_cta_btn1" 
               defaultLabel="Agendar Atendimento" 
-              defaultHref="https://wa.me/5511999999999"
+              defaultHref="https://wa.me/5547996097029"
               className="w-full sm:w-auto px-10 py-5 bg-gold-500 text-wine-950 rounded-full font-bold text-lg hover:bg-gold-400 transition-all shadow-xl shadow-gold-500/20 flex items-center justify-center"
             >
               <ArrowRight className="ml-2" size={20} />
@@ -544,7 +544,7 @@ export default function Home() {
             <EditableButton 
               contentKey="home_cta_btn2" 
               defaultLabel="Falar no WhatsApp" 
-              defaultHref="https://wa.me/5511999999999"
+              defaultHref="https://wa.me/5547996097029"
               className="w-full sm:w-auto px-10 py-5 bg-transparent text-white border-2 border-wine-400 rounded-full font-bold text-lg hover:bg-wine-800 transition-all flex items-center justify-center"
             >
               <MessageCircle className="mr-2" size={20} />

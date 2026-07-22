@@ -3704,7 +3704,7 @@ export default function Admin() {
                               value={settingsForm.whatsapp_number}
                               onChange={(e) => setSettingsForm({ ...settingsForm, whatsapp_number: e.target.value })}
                               className="w-full px-4 py-3 border border-wine-200 rounded-xl focus:ring-2 focus:ring-gold-500 outline-none transition-all"
-                              placeholder="5511999999999"
+                              placeholder="5547996097029"
                             />
                           </div>
                           <div>
