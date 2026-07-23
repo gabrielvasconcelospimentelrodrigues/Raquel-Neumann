@@ -64,8 +64,14 @@ export function ContentProvider({ children, isAdmin: propIsAdmin }: { children: 
         setIsAdmin(await checkUser(session?.user?.email));
       });
 
-      const { data: { subscription } } = supabase.auth.onAuthStateChange(async (_event, session) => {
-        setIsAdmin(await checkUser(session?.user?.email));
+      const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+        // IMPORTANT: never call other supabase methods synchronously inside
+        // onAuthStateChange — it deadlocks the auth lock and leaves login
+        // "stuck loading" with no redirect. Defer with setTimeout so the
+        // callback returns and releases the lock first.
+        setTimeout(() => {
+          checkUser(session?.user?.email).then(setIsAdmin);
+        }, 0);
       });
 
       return () => subscription.unsubscribe();
