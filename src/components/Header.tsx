@@ -55,19 +55,27 @@ import { formatWhatsappUrl } from '../lib/whatsapp';
   }, []);
 
   const handleLogout = async () => {
+    // Try the normal Supabase sign-out, but never let a failure block logout.
+    // scope: 'local' clears the local session without a network round-trip,
+    // so an expired/invalid token can't leave the user "stuck logged in".
     try {
-      const isSupabaseConfigured = import.meta.env.VITE_SUPABASE_URL && import.meta.env.VITE_SUPABASE_URL !== 'your_supabase_url';
-      
-      if (!isSupabaseConfigured) {
-        localStorage.removeItem('mock_user');
-        setUser(null);
-      } else {
-        await supabase.auth.signOut();
-      }
+      await supabase.auth.signOut({ scope: 'local' });
     } catch (err) {
       console.error('Error signing out:', err);
     }
-    
+
+    // Defensive cleanup: always clear any lingering auth/mock state so the UI
+    // updates even if the call above threw.
+    try {
+      localStorage.removeItem('mock_user');
+      Object.keys(localStorage)
+        .filter((k) => k.startsWith('sb-') && k.endsWith('-auth-token'))
+        .forEach((k) => localStorage.removeItem(k));
+    } catch (err) {
+      console.error('Error clearing local session:', err);
+    }
+
+    setUser(null);
     setIsProfileMenuOpen(false);
     navigate('/');
   };

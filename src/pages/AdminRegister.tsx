@@ -29,7 +29,17 @@ export default function AdminRegister() {
       });
 
       if (error) throw error;
-      
+
+      // CRITICAL: admin status is decided by presence in the `admin_users`
+      // table (see ContentContext / AdminLogin). signUp alone does NOT grant
+      // admin — we must register the email here or the account never becomes
+      // an admin (no dashboard, no edit mode).
+      const { error: adminError } = await supabase
+        .from('admin_users')
+        .upsert({ email, name, role: 'admin', status: 'active' }, { onConflict: 'email' });
+
+      if (adminError) throw adminError;
+
       // Fallback for simulation
       if (email === 'gdesignbrasil@gmail.com') {
         navigate('/admin');

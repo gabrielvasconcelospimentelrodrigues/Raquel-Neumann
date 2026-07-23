@@ -96,10 +96,19 @@ export function ContentProvider({ children, isAdmin: propIsAdmin }: { children: 
       const { error } = await supabase
         .from('content')
         .upsert({ key, value, updated_at: new Date().toISOString() }, { onConflict: 'key' });
-        
+
       if (error) throw error;
     } catch (e) {
       console.error('Failed to save content:', e);
+      // Make silent save failures visible: otherwise the admin sees the change
+      // locally (state was already updated above) and assumes it saved, but it
+      // never reached the database — so it never appears on other devices.
+      if (typeof window !== 'undefined') {
+        window.alert(
+          'ERRO AO SALVAR: sua alteração NÃO foi salva no servidor e não vai aparecer em outros dispositivos.\n\n' +
+          'Verifique sua conexão e tente novamente.'
+        );
+      }
     }
   };
 
