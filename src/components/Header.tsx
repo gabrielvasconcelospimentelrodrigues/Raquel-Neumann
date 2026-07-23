@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Menu, X, ShoppingCart, User, LogOut, Package, MapPin, Settings } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
 import { supabase } from '../lib/supabase';
@@ -15,7 +15,6 @@ import { formatWhatsappUrl } from '../lib/whatsapp';
   const [user, setUser] = useState<any>(null);
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
   const profileMenuRef = useRef<HTMLDivElement>(null);
-  const navigate = useNavigate();
 
   useEffect(() => {
     // Simulate user if supabase is not configured
@@ -54,18 +53,20 @@ import { formatWhatsappUrl } from '../lib/whatsapp';
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const handleLogout = async () => {
-    // Try the normal Supabase sign-out, but never let a failure block logout.
-    // scope: 'local' clears the local session without a network round-trip,
-    // so an expired/invalid token can't leave the user "stuck logged in".
+  const handleLogout = () => {
+    // Fire the Supabase sign-out but DO NOT await it: on a bad/expired session
+    // it can hang forever, which would block everything below and make the
+    // "Sair" button look dead. We clear the session ourselves and force a full
+    // reload, so logout always works regardless of what signOut() does.
     try {
-      await supabase.auth.signOut({ scope: 'local' });
+      supabase.auth.signOut({ scope: 'local' }).catch((err) => {
+        console.error('Error signing out:', err);
+      });
     } catch (err) {
       console.error('Error signing out:', err);
     }
 
-    // Defensive cleanup: always clear any lingering auth/mock state so the UI
-    // updates even if the call above threw.
+    // Clear any lingering auth/mock state immediately.
     try {
       localStorage.removeItem('mock_user');
       Object.keys(localStorage)
@@ -77,7 +78,10 @@ import { formatWhatsappUrl } from '../lib/whatsapp';
 
     setUser(null);
     setIsProfileMenuOpen(false);
-    navigate('/');
+    // Hard redirect guarantees a clean, logged-out state even if React state
+    // is stuck. The session was already cleared above, so the reloaded app
+    // sees no user.
+    window.location.href = '/';
   };
 
   return (
