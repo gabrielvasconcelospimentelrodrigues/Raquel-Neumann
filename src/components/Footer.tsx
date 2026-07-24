@@ -6,7 +6,20 @@ import { useContent } from '../contexts/ContentContext';
 import { formatWhatsappUrl } from '../lib/whatsapp';
 
 export default function Footer() {
-  const { content } = useContent();
+  const { content, isAdmin } = useContent();
+
+  // Envolve o conteúdo num link interno — mas NÃO em modo admin, para que
+  // clicar num item para editá-lo não dispare também a navegação.
+  const withLink = (to: string, children: any) =>
+    isAdmin ? children : (
+      <Link to={to} className="hover:text-white transition-colors">{children}</Link>
+    );
+
+  // Mesma ideia para links externos / tel / mailto.
+  const withHref = (href: string, children: any) =>
+    isAdmin ? children : (
+      <a href={href} className="hover:text-white transition-colors">{children}</a>
+    );
 
   return (
     <footer className="bg-wine-950 text-white pt-16 pb-8">
@@ -71,12 +84,12 @@ export default function Footer() {
               <EditableText contentKey="footer_services_title" defaultText="Tratamentos" />
             </h3>
             <ul className="space-y-3">
-              <li className="text-wine-200 text-sm"><EditableText contentKey="footer_services_item1" defaultText="Disfunção Erétil" /></li>
-              <li className="text-wine-200 text-sm"><EditableText contentKey="footer_services_item2" defaultText="Ejaculação Precoce" /></li>
-              <li className="text-wine-200 text-sm"><EditableText contentKey="footer_services_item3" defaultText="Terapia Sexual Masculina" /></li>
-              <li className="text-wine-200 text-sm"><EditableText contentKey="footer_services_item4" defaultText="Cursos de Tantra" /></li>
-              <li className="text-wine-200 text-sm"><EditableText contentKey="footer_services_item5" defaultText="Novo item (clique para editar)" /></li>
-              <li className="text-wine-200 text-sm"><EditableText contentKey="footer_services_item6" defaultText="Novo item (clique para editar)" /></li>
+              <li className="text-wine-200 text-sm">{withLink('/tratamentos', <EditableText contentKey="footer_services_item1" defaultText="Disfunção Erétil" />)}</li>
+              <li className="text-wine-200 text-sm">{withLink('/tratamentos', <EditableText contentKey="footer_services_item2" defaultText="Ejaculação Precoce" />)}</li>
+              <li className="text-wine-200 text-sm">{withLink('/tratamentos', <EditableText contentKey="footer_services_item3" defaultText="Terapia Sexual Masculina" />)}</li>
+              <li className="text-wine-200 text-sm">{withLink('/tratamentos', <EditableText contentKey="footer_services_item4" defaultText="Cursos de Tantra" />)}</li>
+              <li className="text-wine-200 text-sm">{withLink('/tratamentos', <EditableText contentKey="footer_services_item5" defaultText="Novo item (clique para editar)" />)}</li>
+              <li className="text-wine-200 text-sm">{withLink('/tratamentos', <EditableText contentKey="footer_services_item6" defaultText="Novo item (clique para editar)" />)}</li>
             </ul>
           </div>
 
@@ -95,13 +108,17 @@ export default function Footer() {
               <li className="flex items-center">
                 <Phone size={18} className="text-gold-400 mr-3 flex-shrink-0" />
                 <span className="text-wine-200 text-sm">
-                  <EditableText contentKey="footer_contact_phone" defaultText="(47) 99609-7029" />
+                  {withHref(formatWhatsappUrl(`https://wa.me/${content.whatsapp_number || '5547996097029'}`),
+                    <EditableText contentKey="footer_contact_phone" defaultText="(47) 99609-7029" />
+                  )}
                 </span>
               </li>
               <li className="flex items-center">
                 <Mail size={18} className="text-gold-400 mr-3 flex-shrink-0" />
                 <span className="text-wine-200 text-sm">
-                  <EditableText contentKey="footer_contact_email" defaultText="contato@raquelneumann.com.br" />
+                  {withHref(`mailto:${content.footer_contact_email || 'contato@raquelneumann.com.br'}`,
+                    <EditableText contentKey="footer_contact_email" defaultText="contato@raquelneumann.com.br" />
+                  )}
                 </span>
               </li>
             </ul>
