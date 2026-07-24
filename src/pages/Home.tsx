@@ -166,8 +166,16 @@ export default function Home() {
                 <EditableText contentKey="home_dor_item5" defaultText="Queda de confiança" />
               </p>
             </div>
+            <div className="flex items-start p-6 bg-wine-50 rounded-2xl border border-wine-100">
+              <div className="flex-shrink-0 mt-1">
+                <div className="w-2 h-2 rounded-full bg-gold-500"></div>
+              </div>
+              <p className="ml-4 text-wine-900 font-medium">
+                <EditableText contentKey="home_dor_item6" defaultText="Novo item (clique para editar)" />
+              </p>
+            </div>
           </div>
-          
+
           <div className="bg-wine-900 text-white p-8 md:p-10 rounded-3xl shadow-xl relative overflow-hidden">
             <div className="absolute top-0 right-0 w-32 h-32 bg-gold-500 rounded-full opacity-10 transform translate-x-1/2 -translate-y-1/2"></div>
             <p className="text-lg md:text-xl leading-relaxed relative z-10">
@@ -410,10 +418,50 @@ export default function Home() {
                     <EditableText contentKey="home_servicos_item4_title" defaultText="Cursos de Tantra" />
                   </h4>
                   <p className="text-wine-200 leading-relaxed">
-                    <EditableText 
-                      contentKey="home_servicos_item4_desc" 
-                      defaultText="Desenvolvimento da consciência corporal, controle e expansão da sensibilidade." 
-                      multiline 
+                    <EditableText
+                      contentKey="home_servicos_item4_desc"
+                      defaultText="Desenvolvimento da consciência corporal, controle e expansão da sensibilidade."
+                      multiline
+                    />
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-wine-900/50 p-8 rounded-2xl border border-wine-800 hover:border-gold-500/50 transition-colors">
+              <div className="flex items-start">
+                <div className="mt-1 mr-4">
+                  <div className="w-2 h-2 rounded-full bg-gold-400"></div>
+                </div>
+                <div>
+                  <h4 className="font-serif text-xl font-bold text-gold-400 mb-2">
+                    <EditableText contentKey="home_servicos_item5_title" defaultText="Novo Tratamento (clique para editar)" />
+                  </h4>
+                  <p className="text-wine-200 leading-relaxed">
+                    <EditableText
+                      contentKey="home_servicos_item5_desc"
+                      defaultText="Descrição do tratamento (clique para editar)."
+                      multiline
+                    />
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-wine-900/50 p-8 rounded-2xl border border-wine-800 hover:border-gold-500/50 transition-colors">
+              <div className="flex items-start">
+                <div className="mt-1 mr-4">
+                  <div className="w-2 h-2 rounded-full bg-gold-400"></div>
+                </div>
+                <div>
+                  <h4 className="font-serif text-xl font-bold text-gold-400 mb-2">
+                    <EditableText contentKey="home_servicos_item6_title" defaultText="Novo Tratamento (clique para editar)" />
+                  </h4>
+                  <p className="text-wine-200 leading-relaxed">
+                    <EditableText
+                      contentKey="home_servicos_item6_desc"
+                      defaultText="Descrição do tratamento (clique para editar)."
+                      multiline
                     />
                   </p>
                 </div>
@@ -463,6 +511,12 @@ export default function Home() {
                 <EditableText contentKey="home_diferenciais_item5" defaultText="Abordagem integrativa" />
               </span>
             </div>
+            <div className="flex items-center p-4 bg-wine-50 rounded-xl">
+              <CheckCircle2 className="text-gold-600 mr-4 flex-shrink-0" size={24} />
+              <span className="text-wine-900 font-medium text-lg">
+                <EditableText contentKey="home_diferenciais_item6" defaultText="Novo item (clique para editar)" />
+              </span>
+            </div>
           </div>
         </div>
       </section>
@@ -496,6 +550,24 @@ export default function Home() {
                 <CheckCircle2 className="text-gold-600 mr-4 mt-1 flex-shrink-0" size={20} />
                 <span className="text-wine-900 text-lg">
                   <EditableText contentKey="home_objecoes_item3" defaultText="Desejam recuperar confiança e segurança" />
+                </span>
+              </li>
+              <li className="flex items-start">
+                <CheckCircle2 className="text-gold-600 mr-4 mt-1 flex-shrink-0" size={20} />
+                <span className="text-wine-900 text-lg">
+                  <EditableText contentKey="home_objecoes_item4" defaultText="Nova frase (clique para editar)" />
+                </span>
+              </li>
+              <li className="flex items-start">
+                <CheckCircle2 className="text-gold-600 mr-4 mt-1 flex-shrink-0" size={20} />
+                <span className="text-wine-900 text-lg">
+                  <EditableText contentKey="home_objecoes_item5" defaultText="Nova frase (clique para editar)" />
+                </span>
+              </li>
+              <li className="flex items-start">
+                <CheckCircle2 className="text-gold-600 mr-4 mt-1 flex-shrink-0" size={20} />
+                <span className="text-wine-900 text-lg">
+                  <EditableText contentKey="home_objecoes_item6" defaultText="Nova frase (clique para editar)" />
                 </span>
               </li>
             </ul>

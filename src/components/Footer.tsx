@@ -74,6 +74,8 @@ export default function Footer() {
               <li className="text-wine-200 text-sm"><EditableText contentKey="footer_services_item2" defaultText="Ejaculação Precoce" /></li>
               <li className="text-wine-200 text-sm"><EditableText contentKey="footer_services_item3" defaultText="Terapia Sexual Masculina" /></li>
               <li className="text-wine-200 text-sm"><EditableText contentKey="footer_services_item4" defaultText="Cursos de Tantra" /></li>
+              <li className="text-wine-200 text-sm"><EditableText contentKey="footer_services_item5" defaultText="Novo item (clique para editar)" /></li>
+              <li className="text-wine-200 text-sm"><EditableText contentKey="footer_services_item6" defaultText="Novo item (clique para editar)" /></li>
             </ul>
           </div>
 
