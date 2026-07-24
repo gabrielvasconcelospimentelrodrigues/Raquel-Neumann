@@ -33,18 +33,19 @@
   --color-vinho-900: #4f0b1b;
   --color-vinho-950: #2e0610;
 
-  /* "gold" remapeado para TERRACOTA SUAVE (#B87357) — botões e destaques */
-  --color-gold-50: #fbf2ec;
-  --color-gold-100: #f5dfd3;
-  --color-gold-200: #e9bfa9;
-  --color-gold-300: #dc9e82;
-  --color-gold-400: #ce8365;
-  --color-gold-500: #b87357;  /* Terracota Suave */
-  --color-gold-600: #a15e45;
-  --color-gold-700: #834b38;
-  --color-gold-800: #6b3e30;
-  --color-gold-900: #59352a;
-  --color-gold-950: #311b14;
+  /* Acento — VINHO de verdade (vermelho vinho vivo, base Borgonha #630D21).
+     Usado em botões e destaques. Tons claros = vinho/rose, escuros = borgonha. */
+  --color-gold-50: #fbeaee;
+  --color-gold-100: #f6ccd5;
+  --color-gold-200: #eda1b1;
+  --color-gold-300: #e0728c;
+  --color-gold-400: #cf4e6f;
+  --color-gold-500: #b23350;  /* vinho vivo */
+  --color-gold-600: #921f3c;
+  --color-gold-700: #7a162f;
+  --color-gold-800: #630d21;  /* Vinho Borgonha */
+  --color-gold-900: #4d0a19;
+  --color-gold-950: #2c0510;
 
   /* VERDE OLIVA (#6F7752) — disponível para detalhes/ícones/elementos naturais */
   --color-olive-50: #f4f5f0;
