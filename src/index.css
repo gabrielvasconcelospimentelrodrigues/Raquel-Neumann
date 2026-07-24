@@ -6,19 +6,32 @@
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-serif: "Cormorant Garamond", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
 
-  /* Paleta principal — "wine" remapeado para VINHO BORGONHA (#630D21).
-     Ponta clara = tons de Areia/Bege Linho (caixas), ponta escura = Borgonha. */
-  --color-wine-50: #faf5ec;
-  --color-wine-100: #efe3d2;
-  --color-wine-200: #d9cdbe;  /* Bege Linho */
-  --color-wine-300: #c7a69c;
-  --color-wine-400: #b67f72;
-  --color-wine-500: #a15a50;
-  --color-wine-600: #883c3c;
-  --color-wine-700: #762a31;
-  --color-wine-800: #6b1c29;
-  --color-wine-900: #630d21;  /* Vinho Borgonha */
-  --color-wine-950: #3f0714;
+  /* Cor PRINCIPAL — Verde Oliva (o verde original do site): títulos, logo,
+     seções escuras, destaques. Mantido como identidade principal. */
+  --color-wine-50: #f6f8f4;
+  --color-wine-100: #edf0e9;
+  --color-wine-200: #dbe2d2;
+  --color-wine-300: #c4cfb6;
+  --color-wine-400: #a7b38f;
+  --color-wine-500: #8f9d74;
+  --color-wine-600: #738157;
+  --color-wine-700: #5c6745;
+  --color-wine-800: #475036;
+  --color-wine-900: #3c432d;
+  --color-wine-950: #23271a;
+
+  /* VINHO BORGONHA (#630D21) — agora como ACENTO secundário, nao principal */
+  --color-vinho-50: #fdeff2;
+  --color-vinho-100: #f9d9e0;
+  --color-vinho-200: #f0b3c0;
+  --color-vinho-300: #e3849a;
+  --color-vinho-400: #c9556f;
+  --color-vinho-500: #a83350;
+  --color-vinho-600: #8a1f3b;
+  --color-vinho-700: #74162e;
+  --color-vinho-800: #630d21;  /* Vinho Borgonha */
+  --color-vinho-900: #4f0b1b;
+  --color-vinho-950: #2e0610;
 
   /* "gold" remapeado para TERRACOTA SUAVE (#B87357) — botões e destaques */
   --color-gold-50: #fbf2ec;
