@@ -1137,6 +1137,7 @@ export default function Admin() {
       if (error) throw error;
       setNewCourseCategoryName('');
       fetchCourseCategories();
+      alert('Categoria criada com sucesso!');
     } catch (error: any) {
       alert('Erro ao criar categoria: ' + error.message);
     }
@@ -4951,6 +4952,24 @@ export default function Admin() {
                           <option key={cat.id} value={cat.id}>{cat.name}</option>
                         ))}
                       </select>
+                      {/* Criar nova categoria de curso (ex: Online, Presencial) sem sair do formulário */}
+                      <div className="flex gap-2 mt-2">
+                        <input
+                          type="text"
+                          placeholder="Criar nova categoria (ex: Presencial)"
+                          className="flex-1 px-5 py-3 bg-wine-50 border border-wine-100 rounded-2xl focus:ring-2 focus:ring-gold-500 outline-none transition-all font-medium text-sm"
+                          value={newCourseCategoryName}
+                          onChange={(e) => setNewCourseCategoryName(e.target.value)}
+                          onKeyPress={(e) => { if (e.key === 'Enter') { e.preventDefault(); handleCreateCourseCategory(newCourseCategoryName); } }}
+                        />
+                        <button
+                          type="button"
+                          onClick={() => handleCreateCourseCategory(newCourseCategoryName)}
+                          className="px-4 py-3 bg-wine-900 text-white rounded-2xl font-bold text-sm hover:bg-wine-800 transition-colors whitespace-nowrap"
+                        >
+                          + Criar
+                        </button>
+                      </div>
                     </div>
 
                     <div className="flex flex-col gap-4 p-5 bg-wine-50 rounded-2xl border border-wine-100 shadow-sm">
@@ -6630,6 +6649,24 @@ export default function Admin() {
                         <option key={cat.id} value={cat.id}>{cat.name}</option>
                       ))}
                     </select>
+                    {/* Criar nova categoria de tratamento sem sair do formulário */}
+                    <div className="flex gap-2 mt-2">
+                      <input
+                        type="text"
+                        placeholder="Criar nova categoria"
+                        className="flex-1 px-4 py-2 bg-wine-50 border border-wine-100 rounded-xl focus:ring-2 focus:ring-gold-500 outline-none transition-all text-sm"
+                        value={newTherapyCategoryName}
+                        onChange={(e) => setNewTherapyCategoryName(e.target.value)}
+                        onKeyPress={(e) => { if (e.key === 'Enter') { e.preventDefault(); handleCreateTreatmentCategory(newTherapyCategoryName); } }}
+                      />
+                      <button
+                        type="button"
+                        onClick={() => handleCreateTreatmentCategory(newTherapyCategoryName)}
+                        className="px-4 py-2 bg-wine-900 text-white rounded-xl font-bold text-sm hover:bg-wine-800 transition-colors whitespace-nowrap"
+                      >
+                        + Criar
+                      </button>
+                    </div>
                   </div>
 
                   <div>
