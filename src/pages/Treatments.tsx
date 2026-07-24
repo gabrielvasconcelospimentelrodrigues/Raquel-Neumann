@@ -84,7 +84,7 @@ export default function Treatments() {
             Tratamentos e Terapias
           </h1>
           <p className="text-xl text-wine-800">
-            Tratamentos especializados em saúde masculina e performance sexual, realizados com o acolhimento e expertise que você merece.
+            Fisioterapia pélvica e terapias sensoriais para reconectar você aos prazeres da vida. Viva sem culpa. Sem julgamentos. E apaixone-se pela vida.
           </p>
         </div>
 

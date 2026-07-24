@@ -59,7 +59,7 @@ export default function Courses() {
             Cursos e Imersões
           </h1>
           <p className="text-lg text-wine-700">
-            Aprofunde seu conhecimento e prática através de nossos cursos online e encontros presenciais exclusivos.
+            Aprenda e domine técnicas que vão reconectar o seu corpo com o poder do sentir. Sinta a vida pulsar mais intensamente.
           </p>
         </div>
 
