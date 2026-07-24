@@ -33,19 +33,19 @@
   --color-vinho-900: #4f0b1b;
   --color-vinho-950: #2e0610;
 
-  /* Acento — VINHO de verdade (vermelho vinho vivo, base Borgonha #630D21).
-     Usado em botões e destaques. Tons claros = vinho/rose, escuros = borgonha. */
-  --color-gold-50: #fbeaee;
-  --color-gold-100: #f6ccd5;
-  --color-gold-200: #eda1b1;
-  --color-gold-300: #e0728c;
-  --color-gold-400: #cf4e6f;
-  --color-gold-500: #b23350;  /* vinho vivo */
-  --color-gold-600: #921f3c;
-  --color-gold-700: #7a162f;
-  --color-gold-800: #630d21;  /* Vinho Borgonha */
-  --color-gold-900: #4d0a19;
-  --color-gold-950: #2c0510;
+  /* Acento — VINHO BORGONHA profundo (#630D21). Escala fechada, sem rosa.
+     O tom mais usado (gold-500, botões/destaques) é o Borgonha exato. */
+  --color-gold-50: #f3e7e9;
+  --color-gold-100: #e2c1c7;
+  --color-gold-200: #cc959f;
+  --color-gold-300: #a85667;
+  --color-gold-400: #8a2338;
+  --color-gold-500: #630d21;  /* Vinho Borgonha */
+  --color-gold-600: #520a1b;
+  --color-gold-700: #430814;
+  --color-gold-800: #360610;
+  --color-gold-900: #29050c;
+  --color-gold-950: #1a0307;
 
   /* VERDE OLIVA (#6F7752) — disponível para detalhes/ícones/elementos naturais */
   --color-olive-50: #f4f5f0;
