@@ -6,71 +6,35 @@
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-serif: "Cormorant Garamond", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
 
-  /* Cor PRINCIPAL — Verde Oliva (o verde original do site): títulos, logo,
-     seções escuras, destaques. Mantido como identidade principal. */
-  --color-wine-50: #f6f8f4;
-  --color-wine-100: #edf0e9;
-  --color-wine-200: #dbe2d2;
-  --color-wine-300: #c4cfb6;
-  --color-wine-400: #a7b38f;
-  --color-wine-500: #8f9d74;
-  --color-wine-600: #738157;
-  --color-wine-700: #5c6745;
-  --color-wine-800: #475036;
-  --color-wine-900: #3c432d;
-  --color-wine-950: #23271a;
+  --color-wine-50: #fdf8f9;
+  --color-wine-100: #f8eef0;
+  --color-wine-200: #f0dce1;
+  --color-wine-300: #e3c0c9;
+  --color-wine-400: #d09ba8;
+  --color-wine-500: #b87183;
+  --color-wine-600: #9e5366;
+  --color-wine-700: #844152;
+  --color-wine-800: #6e3846;
+  --color-wine-900: #5c323e;
+  --color-wine-950: #32171f;
 
-  /* VINHO BORGONHA (#630D21) — agora como ACENTO secundário, nao principal */
-  --color-vinho-50: #fdeff2;
-  --color-vinho-100: #f9d9e0;
-  --color-vinho-200: #f0b3c0;
-  --color-vinho-300: #e3849a;
-  --color-vinho-400: #c9556f;
-  --color-vinho-500: #a83350;
-  --color-vinho-600: #8a1f3b;
-  --color-vinho-700: #74162e;
-  --color-vinho-800: #630d21;  /* Vinho Borgonha */
-  --color-vinho-900: #4f0b1b;
-  --color-vinho-950: #2e0610;
-
-  /* Acento — VINHO BORGONHA profundo (#630D21). Escala fechada, sem rosa.
-     O tom mais usado (gold-500, botões/destaques) é o Borgonha exato. */
-  --color-gold-50: #f3e7e9;
-  --color-gold-100: #e2c1c7;
-  --color-gold-200: #cc959f;
-  --color-gold-300: #a85667;
-  --color-gold-400: #8a2338;
-  --color-gold-500: #630d21;  /* Vinho Borgonha */
-  --color-gold-600: #520a1b;
-  --color-gold-700: #430814;
-  --color-gold-800: #360610;
-  --color-gold-900: #29050c;
-  --color-gold-950: #1a0307;
-
-  /* VERDE OLIVA (#6F7752) — disponível para detalhes/ícones/elementos naturais */
-  --color-olive-50: #f4f5f0;
-  --color-olive-100: #e6e8dc;
-  --color-olive-200: #ced2bc;
-  --color-olive-300: #aeb593;
-  --color-olive-400: #8f9770;
-  --color-olive-500: #6f7752;  /* Verde Oliva */
-  --color-olive-600: #585f40;
-  --color-olive-700: #464c34;
-  --color-olive-800: #393d2c;
-  --color-olive-900: #313426;
-  --color-olive-950: #191b13;
-
-  /* MARROM MADEIRA (#6B4A36) — apoio/elementos naturais */
-  --color-wood-500: #6b4a36;
-
-  /* GRAFITE QUENTE (#3C3633) — textos */
-  --color-graphite-500: #3c3633;
+  --color-gold-50: #fbf9f2;
+  --color-gold-100: #f5f0df;
+  --color-gold-200: #ebdebf;
+  --color-gold-300: #dfc695;
+  --color-gold-400: #d1a965;
+  --color-gold-500: #c59141;
+  --color-gold-600: #b57835;
+  --color-gold-700: #975e2e;
+  --color-gold-800: #7a4c2b;
+  --color-gold-900: #633f26;
+  --color-gold-950: #382013;
 }
 
 body {
   font-family: var(--font-sans);
-  background-color: #f3ebdd; /* Areia Claro — fundo principal */
-  color: #3c3633;            /* Grafite Quente — textos */
+  background-color: #ffffff;
+  color: #1a1a1a;
 }
 
 h1, h2, h3, h4, h5, h6 {
