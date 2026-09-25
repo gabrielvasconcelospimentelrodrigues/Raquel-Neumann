@@ -89,7 +89,9 @@ export function EditableButton({ contentKey, defaultLabel, defaultHref, classNam
 
   // WhatsApp buttons always point to the number configured in Admin, so they never keep a stale number.
   const whatsappNumber = String(content.whatsapp_number || '').replace(/\D/g, '');
-  const syncedHref = whatsappNumber ? currentHref.replace(/wa\.me\/\d+/, `wa.me/${whatsappNumber}`) : currentHref;
+  // Links pasted without a scheme (e.g. "wa.me/55..." or "www.site.com") would resolve relative to the site.
+  const absoluteHref = /^(wa\.me\/|api\.whatsapp\.com\/|www\.)/i.test(currentHref.trim()) ? `https://${currentHref.trim()}` : currentHref;
+  const syncedHref = whatsappNumber ? absoluteHref.replace(/wa\.me\/\d+/, `wa.me/${whatsappNumber}`) : absoluteHref;
   const renderedHref = formatWhatsappUrl(syncedHref);
 
   return (
