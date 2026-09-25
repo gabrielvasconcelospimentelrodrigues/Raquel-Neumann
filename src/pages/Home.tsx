@@ -80,7 +80,7 @@ export default function Home() {
           <h1 className="hero-anim font-serif text-wine-900 leading-tight mb-6">
             <EditableText 
               contentKey="home_hero_title1" 
-              defaultText="Terapia Sexual e Performance Íntima Masculina" 
+              defaultText="Fisioterapia Pélvica & Terapias Sensorias" 
               className="text-4xl md:text-6xl lg:text-7xl font-bold"
             /> <br/>
             <EditableText 
@@ -92,7 +92,7 @@ export default function Home() {
           <p className="hero-anim text-lg md:text-xl text-wine-800 max-w-3xl mx-auto mb-10 leading-relaxed">
             <EditableText 
               contentKey="home_hero_subtitle" 
-              defaultText="Especialista no tratamento de disfunção erétil, ejaculação precoce e desenvolvimento da confiança íntima masculina. Atendimento profissional, sigiloso e estruturado para resultados reais." 
+              defaultText="O prazer não começa na intimidade. Começa na forma como você vive, sente e se comunica com o próprio corpo. Meu trabalho é conduzir homens e mulheres nesse caminho de reconexão, saúde  íntima e prazer de viver." 
               multiline 
             />
           </p>
@@ -155,7 +155,7 @@ export default function Home() {
                 <div className="w-2 h-2 rounded-full bg-gold-500"></div>
               </div>
               <p className="ml-4 text-wine-900 font-medium">
-                <EditableText contentKey="home_dor_item4" defaultText="Falta de controle" />
+                <EditableText contentKey="home_dor_item4" defaultText="Ausência de orgasmo" />
               </p>
             </div>
             <div className="flex items-start p-6 bg-wine-50 rounded-2xl border border-wine-100">
@@ -163,7 +163,7 @@ export default function Home() {
                 <div className="w-2 h-2 rounded-full bg-gold-500"></div>
               </div>
               <p className="ml-4 text-wine-900 font-medium">
-                <EditableText contentKey="home_dor_item5" defaultText="Queda de confiança" />
+                <EditableText contentKey="home_dor_item5" defaultText="Dores na relação" />
               </p>
             </div>
             <div className="flex items-start p-6 bg-wine-50 rounded-2xl border border-wine-100">
@@ -171,7 +171,7 @@ export default function Home() {
                 <div className="w-2 h-2 rounded-full bg-gold-500"></div>
               </div>
               <p className="ml-4 text-wine-900 font-medium">
-                <EditableText contentKey="home_dor_item6" defaultText="Novo item (clique para editar)" />
+                <EditableText contentKey="home_dor_item6" defaultText="Diminuição da libido" />
               </p>
             </div>
           </div>
@@ -202,7 +202,7 @@ export default function Home() {
                 <div className="aspect-[3/4] rounded-[2rem] overflow-hidden bg-wine-200 relative z-10">
                   <EditableImage 
                     contentKey="home_sobre_image" 
-                    defaultSrc="https://picsum.photos/seed/therapist/800/1000" 
+                    defaultSrc="https://shpbvncguqczyohymjjx.supabase.co/storage/v1/object/public/site-images/1uy373plego-1781453889545.jpg" 
                     alt="Raquel Neumann" 
                   />
                 </div>
@@ -221,21 +221,21 @@ export default function Home() {
                 <p>
                   <EditableText 
                     contentKey="home_sobre_p1" 
-                    defaultText="Raquel Neumann é terapeuta especializada em fisioterapia pélvica e terapia sexual e performance íntima masculina." 
+                    defaultText="Raquel Neumann é terapeuta especializada em fisioterapia pélvica e terapia sexual." 
                     multiline 
                   />
                 </p>
                 <p>
                   <EditableText 
                     contentKey="home_sobre_p2" 
-                    defaultText="Atua há 18 anos, auxiliando homens a superarem disfunção erétil, ejaculação precoce e bloqueios emocionais relacionados à sexualidade." 
+                    defaultText={"Atua há 18 anos, auxiliando homens e mulheres a superarem queixas e bloqueios emocionais relacionados à sexualidade.\nTratamentos para: disfunção erétil, ejaculação precoce, perda urinária, ausência ou dificuldade de ter orgasmo, dores na relação, diminuição da libido., ou para quem quer aprimorar a sua vida sexual e se reconectar com o prazer.\n"} 
                     multiline 
                   />
                 </p>
                 <p>
                   <EditableText 
                     contentKey="home_sobre_p3" 
-                    defaultText="Seu trabalho une abordagem terapêutica estruturada, técnicas corporais e princípios do tantra, promovendo evolução gradual, controle e confiança." 
+                    defaultText="Sua forma de trabalhar une ciência, acolhimento e consciência, porque acredito que conhecimento técnico e sensibilidade caminham juntos para resultados reais." 
                     multiline 
                   />
                 </p>
@@ -282,7 +282,7 @@ export default function Home() {
               <p className="text-wine-800">
                 <EditableText 
                   contentKey="home_metodo_pilar1_desc" 
-                  defaultText="Técnicas para controle ejaculatório e fortalecimento da resposta erétil." 
+                  defaultText="Reconexão corporal e expansão da sensibilidade" 
                   multiline 
                 />
               </p>
@@ -316,7 +316,7 @@ export default function Home() {
               <p className="text-wine-800">
                 <EditableText 
                   contentKey="home_metodo_pilar3_desc" 
-                  defaultText="Reconexão corporal e expansão da sensibilidade." 
+                  defaultText="Energia do prazer de viver através dos sentir." 
                   multiline 
                 />
               </p>
@@ -327,7 +327,7 @@ export default function Home() {
             <p className="font-serif text-2xl text-wine-900 italic">
               <EditableText 
                 contentKey="home_metodo_quote" 
-                defaultText='"O objetivo não é apenas melhorar a ereção. É desenvolver segurança, controle e performance saudável."' 
+                defaultText='"Quando você volta a sentir o próprio corpo, descobre que o verdadeiro prazer não está somente no sexo. Está na forma de viver."'
                 multiline 
               />
             </p>
@@ -340,7 +340,7 @@ export default function Home() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="font-serif text-sm text-gold-400 font-bold tracking-[0.2em] uppercase mb-2">
-              <EditableText contentKey="home_servicos_subtitle" defaultText="SEO Estratégico" />
+              <EditableText contentKey="home_servicos_subtitle" defaultText="Raquel Neumann" />
             </h2>
             <h3 className="font-serif text-3xl md:text-4xl font-bold text-white mb-6">
               <EditableText contentKey="home_servicos_title" defaultText="Tratamentos Especializados" />
@@ -355,12 +355,12 @@ export default function Home() {
                 </div>
                 <div>
                   <h4 className="font-serif text-xl font-bold text-gold-400 mb-2">
-                    <EditableText contentKey="home_servicos_item1_title" defaultText="Disfunção Erétil" />
+                    <EditableText contentKey="home_servicos_item1_title" defaultText="Masculinos" />
                   </h4>
                   <p className="text-wine-200 leading-relaxed">
                     <EditableText 
                       contentKey="home_servicos_item1_desc" 
-                      defaultText="Acompanhamento terapêutico para homens que enfrentam dificuldade de obter ou manter ereção." 
+                      defaultText="Acompanhamento terapêutico para homens que enfrentam dificuldade de obter ou manter ereção, ejaculação precoce, anorgasmia, ansiedade de performance." 
                       multiline 
                     />
                   </p>
@@ -375,12 +375,12 @@ export default function Home() {
                 </div>
                 <div>
                   <h4 className="font-serif text-xl font-bold text-gold-400 mb-2">
-                    <EditableText contentKey="home_servicos_item2_title" defaultText="Ejaculação Precoce" />
+                    <EditableText contentKey="home_servicos_item2_title" defaultText="Femininos" />
                   </h4>
                   <p className="text-wine-200 leading-relaxed">
                     <EditableText 
                       contentKey="home_servicos_item2_desc" 
-                      defaultText="Técnicas práticas e progressivas para desenvolver controle e resistência." 
+                      defaultText="Acompanhamento terapêutico para mulheres com queixas de ausência ou dificuldades em ter orgasmo, dores na relação, diminuição da libido, ausência de prazer." 
                       multiline 
                     />
                   </p>
@@ -395,12 +395,12 @@ export default function Home() {
                 </div>
                 <div>
                   <h4 className="font-serif text-xl font-bold text-gold-400 mb-2">
-                    <EditableText contentKey="home_servicos_item3_title" defaultText="Terapia Sexual Masculina" />
+                    <EditableText contentKey="home_servicos_item3_title" defaultText="Cursos de Pompoarismo" />
                   </h4>
                   <p className="text-wine-200 leading-relaxed">
                     <EditableText 
                       contentKey="home_servicos_item3_desc" 
-                      defaultText="Tratamento completo para ansiedade de desempenho e bloqueios emocionais." 
+                      defaultText="Apaixone-se pelo prazer de sentir e dominar o seu próprio corpo." 
                       multiline 
                     />
                   </p>
@@ -420,7 +420,7 @@ export default function Home() {
                   <p className="text-wine-200 leading-relaxed">
                     <EditableText
                       contentKey="home_servicos_item4_desc"
-                      defaultText="Desenvolvimento da consciência corporal, controle e expansão da sensibilidade."
+                      defaultText="Desenvolvimento da consciência corporal, expansão da sensibilidade e reconexão com o prazer."
                       multiline
                     />
                   </p>
@@ -435,12 +435,12 @@ export default function Home() {
                 </div>
                 <div>
                   <h4 className="font-serif text-xl font-bold text-gold-400 mb-2">
-                    <EditableText contentKey="home_servicos_item5_title" defaultText="Novo Tratamento (clique para editar)" />
+                    <EditableText contentKey="home_servicos_item5_title" defaultText="Reconexão para Casais" />
                   </h4>
                   <p className="text-wine-200 leading-relaxed">
                     <EditableText
                       contentKey="home_servicos_item5_desc"
-                      defaultText="Descrição do tratamento (clique para editar)."
+                      defaultText="Experiências terapêuticas que fortalecem a conexão, a comunicação, o toque e a intimidade, ajudando o casal a cultivar uma relação mais presente, leve e prazerosa. "
                       multiline
                     />
                   </p>
@@ -455,12 +455,12 @@ export default function Home() {
                 </div>
                 <div>
                   <h4 className="font-serif text-xl font-bold text-gold-400 mb-2">
-                    <EditableText contentKey="home_servicos_item6_title" defaultText="Novo Tratamento (clique para editar)" />
+                    <EditableText contentKey="home_servicos_item6_title" defaultText="Spa sensorial" />
                   </h4>
                   <p className="text-wine-200 leading-relaxed">
                     <EditableText
                       contentKey="home_servicos_item6_desc"
-                      defaultText="Descrição do tratamento (clique para editar)."
+                      defaultText="Desperte os sentidos através de um momento único de autocuidado."
                       multiline
                     />
                   </p>
@@ -496,7 +496,7 @@ export default function Home() {
             <div className="flex items-center p-4 bg-wine-50 rounded-xl">
               <CheckCircle2 className="text-gold-600 mr-4 flex-shrink-0" size={24} />
               <span className="text-wine-900 font-medium text-lg">
-                <EditableText contentKey="home_diferenciais_item3" defaultText="Sigilo absoluto" />
+                <EditableText contentKey="home_diferenciais_item3" defaultText="Atendimento para casais" />
               </span>
             </div>
             <div className="flex items-center p-4 bg-wine-50 rounded-xl">
@@ -514,7 +514,7 @@ export default function Home() {
             <div className="flex items-center p-4 bg-wine-50 rounded-xl">
               <CheckCircle2 className="text-gold-600 mr-4 flex-shrink-0" size={24} />
               <span className="text-wine-900 font-medium text-lg">
-                <EditableText contentKey="home_diferenciais_item6" defaultText="Novo item (clique para editar)" />
+                <EditableText contentKey="home_diferenciais_item6" defaultText="Cursos individuais ou em grupo" />
               </span>
             </div>
           </div>
@@ -526,48 +526,48 @@ export default function Home() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-white p-10 md:p-14 rounded-[2.5rem] shadow-xl border border-wine-100">
             <h2 className="font-serif text-3xl md:text-4xl font-bold text-wine-900 mb-8 text-center">
-              <EditableText contentKey="home_objecoes_title" defaultText="Isso é para você?" />
+              <EditableText contentKey="home_objecoes_title" defaultText="Isso é para você se:" />
             </h2>
             
             <p className="text-lg text-wine-800 mb-8 text-center">
-              <EditableText contentKey="home_objecoes_subtitle" defaultText="Esse trabalho é indicado para homens que:" />
+              <EditableText contentKey="home_objecoes_subtitle" defaultText="Esse trabalho é indicado para quem:" />
             </p>
 
             <ul className="space-y-4 mb-10 max-w-2xl mx-auto">
               <li className="flex items-start">
                 <CheckCircle2 className="text-gold-600 mr-4 mt-1 flex-shrink-0" size={20} />
                 <span className="text-wine-900 text-lg">
-                  <EditableText contentKey="home_objecoes_item1" defaultText="Querem resolver o problema de forma estruturada" />
+                  <EditableText contentKey="home_objecoes_item1" defaultText="Sente que perdeu a conexão com o próprio corpo." />
                 </span>
               </li>
               <li className="flex items-start">
                 <CheckCircle2 className="text-gold-600 mr-4 mt-1 flex-shrink-0" size={20} />
                 <span className="text-wine-900 text-lg">
-                  <EditableText contentKey="home_objecoes_item2" defaultText="Buscam evolução real e não soluções milagrosas" />
+                  <EditableText contentKey="home_objecoes_item2" defaultText="Percebe que o estresse e a ansiedade têm afetado seu bem-estar." />
                 </span>
               </li>
               <li className="flex items-start">
                 <CheckCircle2 className="text-gold-600 mr-4 mt-1 flex-shrink-0" size={20} />
                 <span className="text-wine-900 text-lg">
-                  <EditableText contentKey="home_objecoes_item3" defaultText="Desejam recuperar confiança e segurança" />
+                  <EditableText contentKey="home_objecoes_item3" defaultText="Enfrenta dificuldades relacionadas à sexualidade ou ao prazer." />
                 </span>
               </li>
               <li className="flex items-start">
                 <CheckCircle2 className="text-gold-600 mr-4 mt-1 flex-shrink-0" size={20} />
                 <span className="text-wine-900 text-lg">
-                  <EditableText contentKey="home_objecoes_item4" defaultText="Nova frase (clique para editar)" />
+                  <EditableText contentKey="home_objecoes_item4" defaultText="Busca uma relação mais saudável com seu corpo e suas emoções." />
                 </span>
               </li>
               <li className="flex items-start">
                 <CheckCircle2 className="text-gold-600 mr-4 mt-1 flex-shrink-0" size={20} />
                 <span className="text-wine-900 text-lg">
-                  <EditableText contentKey="home_objecoes_item5" defaultText="Nova frase (clique para editar)" />
+                  <EditableText contentKey="home_objecoes_item5" defaultText="Deseja melhorar sua saúde íntima e qualidade de vida." />
                 </span>
               </li>
               <li className="flex items-start">
                 <CheckCircle2 className="text-gold-600 mr-4 mt-1 flex-shrink-0" size={20} />
                 <span className="text-wine-900 text-lg">
-                  <EditableText contentKey="home_objecoes_item6" defaultText="Nova frase (clique para editar)" />
+                  <EditableText contentKey="home_objecoes_item6" defaultText="Quer fortalecer o assoalho pélvico e prevenir ou tratar disfunções." />
                 </span>
               </li>
             </ul>

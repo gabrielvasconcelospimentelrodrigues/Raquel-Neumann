@@ -33,13 +33,13 @@ export default function Footer() {
                 <EditableText contentKey="footer_brand_name" defaultText="Raquel Neumann" />
               </span>
               <span className="text-xs text-gold-400 tracking-[0.2em] uppercase mt-1">
-                <EditableText contentKey="footer_brand_subtitle" defaultText="Terapia Sexual & Performance" />
+                <EditableText contentKey="footer_brand_subtitle" defaultText="Fisioterapia Pélvica & Terapias Sensoriais" />
               </span>
             </Link>
             <p className="text-wine-200 text-sm leading-relaxed mb-6">
               <EditableText 
                 contentKey="footer_brand_desc" 
-                defaultText="Especialista no tratamento de disfunção erétil, ejaculação precoce e desenvolvimento da confiança íntima masculina." 
+                defaultText="Tratamentos para disfunção erétil, ejaculação precoce, dores na relação, diminuição da libido, ausência de prazer, dificuldade em ter orgamos." 
                 multiline 
               />
             </p>
@@ -84,12 +84,12 @@ export default function Footer() {
               <EditableText contentKey="footer_services_title" defaultText="Tratamentos" />
             </h3>
             <ul className="space-y-3">
-              <li className="text-wine-200 text-sm">{withLink('/tratamentos', <EditableText contentKey="footer_services_item1" defaultText="Disfunção Erétil" />)}</li>
-              <li className="text-wine-200 text-sm">{withLink('/tratamentos', <EditableText contentKey="footer_services_item2" defaultText="Ejaculação Precoce" />)}</li>
-              <li className="text-wine-200 text-sm">{withLink('/tratamentos', <EditableText contentKey="footer_services_item3" defaultText="Terapia Sexual Masculina" />)}</li>
-              <li className="text-wine-200 text-sm">{withLink('/tratamentos', <EditableText contentKey="footer_services_item4" defaultText="Cursos de Tantra" />)}</li>
-              <li className="text-wine-200 text-sm">{withLink('/tratamentos', <EditableText contentKey="footer_services_item5" defaultText="Novo item (clique para editar)" />)}</li>
-              <li className="text-wine-200 text-sm">{withLink('/tratamentos', <EditableText contentKey="footer_services_item6" defaultText="Novo item (clique para editar)" />)}</li>
+              <li className="text-wine-200 text-sm">{withLink('/tratamentos', <EditableText contentKey="footer_services_item1" defaultText="Femininos" />)}</li>
+              <li className="text-wine-200 text-sm">{withLink('/tratamentos', <EditableText contentKey="footer_services_item2" defaultText="Masculinos" />)}</li>
+              <li className="text-wine-200 text-sm">{withLink('/tratamentos', <EditableText contentKey="footer_services_item3" defaultText="Casais" />)}</li>
+              <li className="text-wine-200 text-sm">{withLink('/tratamentos', <EditableText contentKey="footer_services_item4" defaultText="Cursos de Tantra " />)}</li>
+              <li className="text-wine-200 text-sm">{withLink('/tratamentos', <EditableText contentKey="footer_services_item5" defaultText="Curso de Pompoarismo" />)}</li>
+              <li className="text-wine-200 text-sm">{withLink('/tratamentos', <EditableText contentKey="footer_services_item6" defaultText="Experiências Sensoriais" />)}</li>
             </ul>
           </div>
 
@@ -102,14 +102,14 @@ export default function Footer() {
               <li className="flex items-start">
                 <MapPin size={18} className="text-gold-400 mr-3 mt-0.5 flex-shrink-0" />
                 <span className="text-wine-200 text-sm">
-                  <EditableText contentKey="footer_contact_address" defaultText="Rua 700 n 489 sl 1203\nBalneário Camboriú/SC\nCep: 88330620" multiline />
+                  <EditableText contentKey="footer_contact_address" defaultText={"Rua 700 n 489 sl 1203\nBalneário Camboriú/SC\nCep: 88330620"} multiline />
                 </span>
               </li>
               <li className="flex items-center">
                 <Phone size={18} className="text-gold-400 mr-3 flex-shrink-0" />
                 <span className="text-wine-200 text-sm">
                   {withHref(formatWhatsappUrl(`https://wa.me/${content.whatsapp_number || '5547996097029'}`),
-                    <EditableText contentKey="footer_contact_phone" defaultText="(47) 99609-7029" />
+                    <EditableText contentKey="footer_contact_phone" defaultText="47996097029" />
                   )}
                 </span>
               </li>
