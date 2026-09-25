@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { supabase } from '../lib/supabase';
+import { CONTENT_DEFAULTS } from '../lib/contentDefaults';
 
 type ContentData = {
   [key: string]: any;
@@ -14,7 +15,7 @@ interface ContentContextType {
 const ContentContext = createContext<ContentContextType | undefined>(undefined);
 
 export function ContentProvider({ children, isAdmin: propIsAdmin }: { children: React.ReactNode, isAdmin?: boolean }) {
-  const [content, setContent] = useState<ContentData>({});
+  const [content, setContent] = useState<ContentData>(CONTENT_DEFAULTS);
   const [isAdmin, setIsAdmin] = useState(propIsAdmin || false);
 
   useEffect(() => {
@@ -34,7 +35,7 @@ export function ContentProvider({ children, isAdmin: propIsAdmin }: { children: 
           data.forEach(item => {
             contentMap[item.key] = item.value;
           });
-          setContent(contentMap);
+          setContent({ ...CONTENT_DEFAULTS, ...contentMap });
         }
       } catch (err) {
         console.error('Failed to fetch content:', err);

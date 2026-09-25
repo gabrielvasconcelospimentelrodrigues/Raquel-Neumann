@@ -369,6 +369,10 @@ export default function Admin() {
     melhorenvio_sender_cep: '',
   });
   const [fetchingSettings, setFetchingSettings] = useState(false);
+  // Snapshot of the serialized values as loaded from the DB. Saving only sends
+  // keys that differ from it, so values edited elsewhere (e.g. footer contact
+  // info edited inline on the site) are not overwritten with stale/empty ones.
+  const loadedSettingsRef = useRef<Record<string, string> | null>(null);
   const [savingSettings, setSavingSettings] = useState(false);
   const [settingsMessage, setSettingsMessage] = useState<{type: 'success'|'error', text: string} | null>(null);
   const [generatingPost, setGeneratingPost] = useState(false);
@@ -1510,6 +1514,9 @@ export default function Admin() {
           }
         });
         setSettingsForm(newSettings);
+        loadedSettingsRef.current = Object.fromEntries(
+          Object.entries(newSettings).map(([key, value]) => [key, serializeSetting(value)])
+        );
       }
     } catch (err) {
       console.error('Error fetching settings:', err);
@@ -1518,19 +1525,30 @@ export default function Admin() {
     }
   };
 
+  const serializeSetting = (value: any) =>
+    typeof value === 'object' ? JSON.stringify(value) : (typeof value === 'boolean' ? String(value) : value);
+
   const handleSaveSettings = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSavingSettings(true);
     setSettingsMessage(null);
+    const loaded = loadedSettingsRef.current;
+    if (!loaded) {
+      // Settings never loaded: saving now would overwrite the DB with the form defaults (mostly empty).
+      setSettingsMessage({ type: 'error', text: 'Não foi possível carregar as configurações atuais. Recarregue a página antes de salvar.' });
+      return;
+    }
+    setSavingSettings(true);
     try {
-      const updates = Object.entries(settingsForm).map(([key, value]) => ({
-        key,
-        value: typeof value === 'object' ? JSON.stringify(value) : (typeof value === 'boolean' ? String(value) : value),
-        updated_at: new Date().toISOString()
-      }));
-      
-      const { error } = await supabase.from('content').upsert(updates, { onConflict: 'key' });
-      if (error) throw error;
+      const updates = Object.entries(settingsForm)
+        .map(([key, value]) => ({ key, value: serializeSetting(value) }))
+        .filter(({ key, value }) => loaded[key] !== value)
+        .map((row) => ({ ...row, updated_at: new Date().toISOString() }));
+
+      if (updates.length > 0) {
+        const { error } = await supabase.from('content').upsert(updates, { onConflict: 'key' });
+        if (error) throw error;
+        updates.forEach(({ key, value }) => { loaded[key] = value; });
+      }
       setSettingsMessage({ type: 'success', text: 'Configurações salvas com sucesso!' });
       setTimeout(() => setSettingsMessage(null), 3000);
     } catch (err) {

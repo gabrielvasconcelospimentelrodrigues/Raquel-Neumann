@@ -102,7 +102,7 @@ export default function Footer() {
               <li className="flex items-start">
                 <MapPin size={18} className="text-gold-400 mr-3 mt-0.5 flex-shrink-0" />
                 <span className="text-wine-200 text-sm">
-                  <EditableText contentKey="footer_contact_address" defaultText="Av. Paulista, 1000 - Bela Vista\nSão Paulo - SP" multiline />
+                  <EditableText contentKey="footer_contact_address" defaultText="Rua 700 n 489 sl 1203\nBalneário Camboriú/SC\nCep: 88330620" multiline />
                 </span>
               </li>
               <li className="flex items-center">
